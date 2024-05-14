@@ -1,0 +1,45 @@
+pipeline {
+    agent any 
+    environment {
+        INSTAGRAM_BRIANDF25="@briandf25"
+    }
+    stages {
+        stage ("saludo 1") {
+            steps {
+                echo "Hola Desde Saludo 1"
+            } 
+        }
+        stage ("saludo 2") {
+            steps {
+                echo "Hola desde saludo 2, paso 1"
+                echo "Hola desde saludo 2, paso 2"
+            }
+        }
+        stage ("Imprimir Variables de Entorno") {
+            steps {
+                echo "${env.INSTAGRAM_BRIANDF25}"
+                echo "${INSTAGRAM_BRIANDF25}"
+                echo "$INSTAGRAM_BRIANDF25"
+                echo "========================================="
+                sh "echo ${env.INSTAGRAM_BRIANDF25} "
+                sh "echo ${INSTAGRAM_BRIANDF25} "
+                sh "echo $INSTAGRAM_BRIANDF25"
+                echo "========================================="
+                
+            }
+        }
+        stage ("Imprimir Variable de Entorno, Definida en System" ){
+            steps {
+                echo "${env.INSTAGRAM}"
+                echo "${INSTAGRAM}"
+                echo "$INSTAGRAM"
+               
+                sh "echo ${env.INSTAGRAM} "
+                sh "echo ${INSTAGRAM}"
+                sh """echo $INSTAGRAM"""
+                
+            }
+        }
+    }
+}
+
